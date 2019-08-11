@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment: 
+      PORT: "3000"
+      HOST: "http://localhost:3000"
+      MONGODB_URI: "mongodb://mongo:27017/example"
+    env_file: .env
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
