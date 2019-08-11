@@ -1,0 +1,14 @@
+export enum Day {
+  Monday = "monday",
+  Tuesday = "tuesday",
+  Wednesday = "wednesday",
+  Thursday = "thursday",
+  Friday = "friday",
+  Saturday = "saturday",
+  Sunday = "sunday"
+}
+
+export enum EventType {
+  Recurrent = "recurrent",
+  Unique = "unique"
+}
