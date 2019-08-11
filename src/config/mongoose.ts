@@ -3,6 +3,7 @@ import env from "./env";
 
 export default () => {
   return mongoose.connect(env.mongo.uri, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true
   });
 };
