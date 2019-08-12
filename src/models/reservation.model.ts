@@ -11,5 +11,3 @@ export const Reservation = model<ReservationDocument>(
   "Reservation",
   ReservationSchema
 );
-
-export default Reservation;

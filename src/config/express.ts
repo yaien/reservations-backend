@@ -4,7 +4,6 @@ import compression from "compression";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import helmet from "helmet";
-import cors from "cors";
 import routes from "./routes";
 
 export default () => {
@@ -21,7 +20,6 @@ export default () => {
       extended: true
     })
   );
-  app.use(cors());
   routes(app);
   return app;
 };

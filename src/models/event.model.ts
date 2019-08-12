@@ -16,12 +16,20 @@ const EventSchema = new Schema({
   picture: String,
   description: String,
   published: Boolean,
-  location: { latitude: Number, longitude: Number },
+  location: {
+    type: {
+      type: String,
+      required: true,
+      enum: ["Point"]
+    },
+    cordinates: {
+      type: [Number],
+      required: true
+    }
+  },
   date: Date,
   schedule: [ScheduleSchema],
   owner: { type: Schema.Types.ObjectId, ref: "User" }
 });
 
 export const Event = model<EventDocument>("Event", EventSchema);
-
-export default Event;

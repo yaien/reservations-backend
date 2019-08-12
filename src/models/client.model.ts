@@ -19,5 +19,3 @@ ClientSchema.method("verify", function(this: ClientDocument, secret: string) {
 });
 
 export const Client = model<ClientDocument>("Client", ClientSchema);
-
-export default Client;

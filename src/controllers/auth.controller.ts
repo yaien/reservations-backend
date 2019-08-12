@@ -1,4 +1,4 @@
-import Client from "../models/client.model";
+import { Client } from "../models/client.model";
 import { RequestHandler } from "express";
 import { sign } from "../helpers/jwt";
 
@@ -12,7 +12,7 @@ export const getTokenHandler: RequestHandler = async (req, res, next) => {
       throw new Error("INCORRECT_SECRET");
     }
 
-    let auth = sign({ client_id: client.id, aud: client.key });
+    let auth = sign(client);
 
     res.send(auth);
   } catch (err) {
