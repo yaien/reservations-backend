@@ -4,4 +4,5 @@ export interface ClientDocument extends Document {
   key: string;
   secret: string;
   name: string;
+  verify(secret: string): Promise<boolean>;
 }
