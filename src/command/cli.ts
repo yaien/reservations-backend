@@ -1,7 +1,7 @@
 import yargs from "yargs";
 import argon2 from "argon2";
 import mongoose from "../config/mongoose";
-import Client from "../models/client.model";
+import { Client } from "../models/client.model";
 
 yargs
   .command(

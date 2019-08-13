@@ -57,6 +57,7 @@ export const createEventValidation = validation({
       .max(255)
       .required(),
     address: string(),
+    phone: string(),
     picture: string().uri(),
     description: string(),
     location: location.required(),
@@ -69,7 +70,6 @@ export const createEventValidation = validation({
     date: when("type", {
       is: EventType.Unique,
       then: date()
-        .iso()
         .required()
         .min("now"),
       otherwise: forbidden()

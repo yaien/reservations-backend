@@ -15,7 +15,8 @@ const EventSchema = new Schema({
   address: String,
   picture: String,
   description: String,
-  published: Boolean,
+  phone: String,
+  published: { type: Boolean, default: false },
   location: {
     type: {
       type: String,
@@ -29,7 +30,7 @@ const EventSchema = new Schema({
   },
   date: Date,
   schedule: [ScheduleSchema],
-  owner: { type: Schema.Types.ObjectId, ref: "User" }
+  user: { type: Schema.Types.ObjectId, ref: "User" }
 });
 
 export const Event = model<EventDocument>("Event", EventSchema);
