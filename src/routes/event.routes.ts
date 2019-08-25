@@ -7,7 +7,10 @@ import {
   getEventParam,
   getEventHandler,
   updateEventHandler,
-  getUserEventParam
+  getUserEventParam,
+  deleteEvent,
+  publishEvent,
+  unpublishEvent
 } from "../controllers/event.controller";
 import auth from "../middlewares/auth";
 
@@ -22,7 +25,11 @@ export function useEventRoutes(app: Application) {
     .route("/v1/user/:user/event/:user_event")
     .all(auth)
     .get(getEventHandler)
-    .put(createEventValidation, updateEventHandler);
+    .put(createEventValidation, updateEventHandler)
+    .delete(deleteEvent);
+
+  app.patch("/v1/user/:user/event/:user_event/publish", publishEvent);
+  app.patch("/v1/user/:user/event/:user_event/unpublish", unpublishEvent);
 
   app.get("/v1/event", auth, getAllEventsHandler);
 

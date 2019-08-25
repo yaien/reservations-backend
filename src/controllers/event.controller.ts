@@ -1,5 +1,6 @@
 import { RequestHandler, RequestParamHandler } from "express";
 import { Event } from "../models/event.model";
+import { EventDocument } from "../interfaces/event.interfaces";
 
 export const createEventHandler: RequestHandler = async (req, res, next) => {
   try {
@@ -61,9 +62,42 @@ export const getEventHandler: RequestHandler = async (req, res) => {
 export const updateEventHandler: RequestHandler = async (req, res, next) => {
   try {
     let event = res.locals.event;
+    if (event.published) {
+      throw new Error("PUBLISHED_EVENT");
+    }
     await event.set(req.body).save();
     res.send(event);
   } catch (err) {
     next(err);
   }
+};
+
+export const publishEvent: RequestHandler = async (req, res, next) => {
+  try {
+    let event = res.locals.event;
+    event.published = true;
+    await event.save();
+    res.send(event);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const unpublishEvent: RequestHandler = async (req, res, next) => {
+  try {
+    let event = res.locals.event;
+    event.published = false;
+    await event.save();
+    res.send(event);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const deleteEvent: RequestHandler = async (req, res, next) => {
+  let event = res.locals.event;
+  if (event.published) return next(new Error("PUBLISHED_EVENT"));
+  event.deleted = true;
+  await event.save();
+  res.send(event);
 };

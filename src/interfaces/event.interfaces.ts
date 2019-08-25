@@ -17,6 +17,7 @@ export interface BaseEvent extends Document {
   description: string;
   location: { type: "Point"; cordinates: [number, number] };
   published: boolean;
+  deleted: boolean;
   owner: UserDocument | ObjectID;
 }
 

@@ -17,6 +17,7 @@ const EventSchema = new Schema({
   description: String,
   phone: String,
   published: { type: Boolean, default: false },
+  deleted: { type: Boolean, default: false },
   location: {
     type: {
       type: String,
