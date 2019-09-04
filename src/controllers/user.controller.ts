@@ -1,7 +1,5 @@
 import { RequestHandler, RequestParamHandler } from "express";
 import { User } from "../models/user.model";
-import { Event } from "../models/event.model";
-import { UserDocument } from "../interfaces/user.interfaces";
 
 export const createUserHandler: RequestHandler = async (req, res, next) => {
   try {

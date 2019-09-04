@@ -17,13 +17,11 @@ import auth from "../middlewares/auth";
 export function useEventRoutes(app: Application) {
   app
     .route("/v1/user/:user/event")
-    .all(auth)
     .get(getUserEventsHandler)
     .post(createEventValidation, createEventHandler);
 
   app
     .route("/v1/user/:user/event/:user_event")
-    .all(auth)
     .get(getEventHandler)
     .put(createEventValidation, updateEventHandler)
     .delete(deleteEvent);
@@ -31,7 +29,7 @@ export function useEventRoutes(app: Application) {
   app.patch("/v1/user/:user/event/:user_event/publish", publishEvent);
   app.patch("/v1/user/:user/event/:user_event/unpublish", unpublishEvent);
 
-  app.get("/v1/event", auth, getAllEventsHandler);
+  app.get("/v1/event", getAllEventsHandler);
 
   app
     .route("/v1/event/:event")

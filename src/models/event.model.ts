@@ -3,10 +3,8 @@ import { EventDocument } from "../interfaces/event.interfaces";
 
 const ScheduleSchema = new Schema({
   day: String,
-  start: {
-    hour: Number,
-    minutes: Number
-  }
+  start: Number,
+  duration: Number
 });
 
 const EventSchema = new Schema({
@@ -29,7 +27,8 @@ const EventSchema = new Schema({
       required: true
     }
   },
-  date: Date,
+  date: { type: String },
+  duration: Number,
   schedule: [ScheduleSchema],
   user: { type: Schema.Types.ObjectId, ref: "User" }
 });

@@ -34,19 +34,8 @@ const schedule = array()
   .items(
     object({
       day: valid(Object.values(Day)).required(),
-      duration: number()
-        .min(0)
-        .required(),
-      start: object({
-        hours: number()
-          .min(0)
-          .max(23),
-        minutes: number()
-          .min(0)
-          .max(59)
-      })
-        .or("hours", "minutes")
-        .required()
+      duration: number().min(0).required(),
+      start: number().min(0).max(86399).required().label("minutes from 0:00 to 23:59")
     })
   );
 
@@ -70,8 +59,10 @@ export const createEventValidation = validation({
     date: when("type", {
       is: EventType.Unique,
       then: date()
+        .iso()
         .required()
-        .min("now"),
+        .min("now")
+        .raw(),
       otherwise: forbidden()
     }),
     duration: when("type", {

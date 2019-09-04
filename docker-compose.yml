@@ -9,9 +9,12 @@ services:
       PORT: "3000"
       HOST: "http://localhost:3000"
       MONGODB_URI: "mongodb://mongo:27017/example"
-    env_file: .env
+      JWT_SECRET: "secret"
     depends_on:
       - mongo
+    command: npm run dev
+    volumes:
+      - ./src:/app/src
 
   mongo:
     image: mongo

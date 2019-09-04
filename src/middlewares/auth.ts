@@ -1,4 +1,4 @@
-import { RequestHandler, Request } from "express";
+import { RequestHandler, Request, Response, NextFunction } from "express";
 import { verify } from "../helpers/jwt";
 import { Client } from "../models/client.model";
 
@@ -20,4 +20,4 @@ const auth: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default auth;
+export default (req: Request, res: Response, next: NextFunction) => next();
